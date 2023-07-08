@@ -5,33 +5,33 @@ PS2X ps2;
 Adafruit_PWMServoDriver pwm = Adafruit_PWMServoDriver();
 
 /* PS2 controller pins */
-#define PS2_DAT 12
-#define PS2_CMD 13
-#define PS2_ATT 15
-#define PS2_CLK 14
+#define PS2_DAT       12
+#define PS2_CMD       13
+#define PS2_ATT       15
+#define PS2_CLK       14
 
 /* PWM channels for DC motors */
-#define PWM_DC0A 8 // DC motor 0
-#define PWM_DC0B 9
-#define PWM_DC1A 10 // DC motor 1
-#define PWM_DC1B 11
-#define PWM_DC2A 12 // DC motor 2
-#define PWM_DC2B 13
-#define PWM_DC3A 14 // DC motor 3
-#define PWM_DC3B 15
+#define PWM_DC0A      8 // DC motor 0
+#define PWM_DC0B      9
+#define PWM_DC1A      10 // DC motor 1
+#define PWM_DC1B      11
+#define PWM_DC2A      12 // DC motor 2
+#define PWM_DC2B      13
+#define PWM_DC3A      14 // DC motor 3
+#define PWM_DC3B      15
 
-#define MOT_DC_LEFT 0
-#define MOT_DC_RIGHT 3
-#define MOT_DC_SHOOT 1
+#define MOT_DC_LEFT   0
+#define MOT_DC_RIGHT  3
+#define MOT_DC_SHOOT  1
 #define MOT_DC_INTAKE 2
 
-#define SPD_SHOOT 4095
-#define SPD_INTAKE 4095
-#define SPD_DRIVE 3072
-#define SPD_DEAD 80
+#define SPD_SHOOT     4095
+#define SPD_INTAKE    4095
+#define SPD_DRIVE     3072
+#define SPD_DEAD      80
 
-#define S360_PW_MIN 400
-#define S360_PW_MID 1400
+#define S360_PW_MIN    400 
+#define S360_PW_MID    1400 
 
 /* control DC motor */
 void dc_control(uint8_t motor, int16_t speed, bool brake = false)
