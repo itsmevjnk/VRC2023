@@ -39,9 +39,7 @@ void dc_control(uint8_t motor, int16_t speed, bool brake = false)
   if (speed > -SPD_DEAD && speed < SPD_DEAD)
     speed = 0;
   uint16_t speed_a = (brake) ? 4095 : ((speed > 0) ? speed : 0);
-  // Còn đây là brake thì để thế th a -Hong Son
-  uint16_t speed_b = (brake) ? 40
-  +95 : ((speed < 0) ? (-speed) : 0);
+  uint16_t speed_b = (brake) ? 4095 : ((speed < 0) ? (-speed) : 0);
   switch (motor)
   {
   case MOT_DC_LEFT:
