@@ -67,9 +67,9 @@ void servo180_control(uint16_t ch, float angle)
   pwm.writeMicroseconds(ch, us);
 }
 
-void servo360_control(uint16_t ch, float speed)
+void servo360_control(uint16_t ch, uint16_t sp)
 {
-  pwm.writeMicroseconds(ch, S360_PW_MID + speed * (S360_PW_MID - S360_PW_MIN));
+  pwm.writeMicroseconds(ch, sp);
 }
 void setup()
 {
@@ -100,23 +100,30 @@ void loop()
   // put your main code here, to run repeatedly:
   ps2.read_gamepad(); // update from controller
 
-  int16_t speed_l = map(ps2.Analog(PSS_LY), 0, 255, -SPD_DRIVE, SPD_DRIVE);
+  int16_t speed_l = map(ps2.Analog(PSS_LY), 0, 255, SPD_DRIVE, -SPD_DRIVE);
   dc_control(MOT_DC_LEFT, speed_l);
-  Serial.print(speed_l, DEC);
-  Serial.print(' ');
-  int16_t speed_r = map(ps2.Analog(PSS_RY), 0, 255, SPD_DRIVE, -SPD_DRIVE);
+  //Serial.print(speed_l, DEC);
+  //Serial.print(' ');
+  int16_t speed_r = map(ps2.Analog(PSS_RY), 0, 255, -SPD_DRIVE, SPD_DRIVE);
+  speed_r=speed_r*3/5;
   dc_control(MOT_DC_RIGHT, speed_r);
-  Serial.println(speed_r, DEC);
+  //Serial.println(speed_r, DEC);
   if (ps2.Button(PSB_RED))
   {
     dc_control(MOT_DC_SHOOT, SPD_SHOOT);
   }
   else
     dc_control(MOT_DC_SHOOT, 0);
-  if (ps2.Button(PSB_BLUE))
+   if (ps2.Button(PSB_BLUE))
   {
-    servo360_control(6, 100);
-    servo360_control(7, 100);
+    dc_control(MOT_DC_INTAKE, SPD_INTAKE);
+  }
+  else
+    dc_control(MOT_DC_INTAKE, 0);
+    if (ps2.Button(PSB_GREEN))
+  {
+    servo360_control(6, 2500);
+    servo360_control(7, 2500);
   }
   else
   {
