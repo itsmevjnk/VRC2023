@@ -20,10 +20,10 @@ Adafruit_PWMServoDriver pwm = Adafruit_PWMServoDriver();
 #define PWM_DC3A          14  // DC motor 3
 #define PWM_DC3B          15
 
-#define MOT_DC_LEFT       0
-#define MOT_DC_RIGHT      3
-#define MOT_DC_SHOOT      1
-#define MOT_DC_INTAKE     2
+#define MOT_DC_LEFT       1
+#define MOT_DC_RIGHT      2
+#define MOT_DC_SHOOT      3
+#define MOT_DC_INTAKE     0
 
 #define SPD_SHOOT         4095
 #define SPD_INTAKE        4095
@@ -42,19 +42,19 @@ void dc_control(uint8_t motor, int16_t speed, bool brake = false) {
 
   // switch case to control the different motors based on the input motor value
   switch (motor) {
-    case MOT_DC_LEFT:
+    case 2:
       pwm.setPWM(PWM_DC0A, 0, speed_a);
       pwm.setPWM(PWM_DC0B, 0, speed_b);
       break;
-    case MOT_DC_SHOOT:
+    case 3:
       pwm.setPWM(PWM_DC1A, 0, speed_a);
       pwm.setPWM(PWM_DC1B, 0, speed_b);
       break;
-    case MOT_DC_INTAKE:
+    case 0:
       pwm.setPWM(PWM_DC2A, 0, speed_a);
       pwm.setPWM(PWM_DC2B, 0, speed_b);
       break;
-    case MOT_DC_RIGHT:
+    case 1:
       pwm.setPWM(PWM_DC3A, 0, speed_a);
       pwm.setPWM(PWM_DC3B, 0, speed_b);
       break;
