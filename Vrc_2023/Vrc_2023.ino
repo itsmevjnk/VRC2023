@@ -114,8 +114,8 @@ void loop() {
   } else
     dc_control(MOT_DC_INTAKE, 0);
   if (ps2.Button(PSB_GREEN)) {
-    servo360_control(6, 2500);
-    servo360_control(7, 2500);
+    servo360_control(6, 1900);
+    servo360_control(7, 1900);
   } else {
     servo360_control(6, 0);
     servo360_control(7, 0);
